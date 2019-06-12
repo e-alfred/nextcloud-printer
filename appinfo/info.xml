@@ -24,9 +24,9 @@
     </documentation>
     <category>files</category>
     <category>tools</category>
-    <website>https://github.com/westberliner/owncloud-checksum/</website>
-    <bugs>https://github.com/westberliner/owncloud-checksum/issues</bugs>
-    <screenshot>https://raw.githubusercontent.com/westberliner/owncloud-checksum/master/screenshots/checksum.gif</screenshot>
+    <website>https://github.com/e.alfred/nextcloud-printer/</website>
+    <bugs>https://github.com/westberliner/nextcloud-printer/issues</bugs>
+    <screenshot>https://raw.githubusercontent.com/e-alfred/nextcloud-printer/master/screenshots/print.gif</screenshot>
     <dependencies>
         <nextcloud min-version="14" max-version="17" />
     </dependencies>

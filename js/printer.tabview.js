@@ -32,21 +32,17 @@
       this._renderSelectList(this.$el);
 
       this.delegateEvents({
-        'change #choose-algorithm': '_onChangeEvent'
+        'change #choose-orientation': '_onChangeEvent'
       });
 
     },
 
     _renderSelectList: function($el) {
-      $el.html('<div class="get-checksum">'
-        + '<select id="choose-algorithm">'
-          + '<option value="">' + t('checksum', 'Choose Algorithm') + '</option>'
-          + '<option value="md5">MD5</option>'
-          + '<option value="sha1">SHA1</option>'
-          + '<option value="sha256">SHA256</option>'
-          + '<option value="sha384">SHA384</option>'
-          + '<option value="sha512">SHA512</option>'
-          + '<option value="crc32">CRC32</option>'
+      $el.html('<div class="get-print">'
+        + '<select id="choose-orientation">'
+          + '<option value="">' + t('printer', 'Choose orientation') + '</option>'
+          + '<option value="landscape">Landscape</option>'
+          + '<option value="portrait">Portrait</option>'
         + '</select></div>'
       );
     },
@@ -68,7 +64,7 @@
     /**
      * ajax callback for generating md5 hash
      */
-    check: function(fileInfo, algorithmType) {
+    check: function(fileInfo, orientation) {
       // skip call if fileInfo is null
       if(null == fileInfo) {
         _self.updateDisplay({
@@ -80,7 +76,7 @@
       }
 
       var url = OC.generateUrl('/apps/printer/printfile'),
-          data = {source: fileInfo.getFullPath(), type: algorithmType},
+          data = {source: fileInfo.getFullPath(), type: orientation},
           _self = this;
       $.ajax({
         type: 'GET',
@@ -89,7 +85,7 @@
         data: data,
         async: true,
         success: function(data) {
-          _self.updateDisplay(data, algorithmType);
+          _self.updateDisplay(data, orientation);
         }
       });
 
@@ -98,11 +94,11 @@
     /**
      * display message from ajax callback
      */
-    updateDisplay: function(data, algorithmType) {
+    updateDisplay: function(data, orientation) {
 
       var msg = '';
       if('success' == data.response) {
-        msg = algorithmType + ': ' + data.msg;
+        msg = orientation + ': ' + data.msg;
       }
       if('error' == data.response) {
         msg = data.msg;
@@ -114,7 +110,7 @@
         'click #reload-checksum': '_onReloadEvent'
       });
 
-      this.$el.find('.get-checksum').html(msg);
+      this.$el.find('.get-print').html(msg);
 
     },
 
@@ -122,14 +118,14 @@
      * changeHandler
      */
     _onChangeEvent: function(ev) {
-      var algorithmType = $(ev.currentTarget).val();
-      if(algorithmType != '') {
-        this.$el.html('<div style="text-align:center; word-wrap:break-word;" class="get-checksum"><p><img src="'
+      var orientation = $(ev.currentTarget).val();
+      if(orientation != '') {
+        this.$el.html('<div style="text-align:center; word-wrap:break-word;" class="get-print"><p><img src="'
           + OC.imagePath('core','loading.gif')
           + '"><br><br></p><p>'
           + t('printer', 'Printing document ...')
           + '</p></div>');
-        this.check(this.getFileInfo(), algorithmType);
+        this.check(this.getFileInfo(), orientation);
       }
     },
 
