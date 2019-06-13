@@ -27,16 +27,18 @@ class PrinterController extends Controller {
 		 * @param (string) $orientation - Orientation of printed file
 		 */
 	  public function printfile($source, $orientation) {
-	  		if(!$this->checkAlgorithmType($type)) {
+	  		if($orientation == "landscape") {
+					shell_exec('lpr ' . $source);
 	  			return new JSONResponse(
 							array(
-									'response' => 'error',
-									'msg' => $this->language->t('Print failed!')
+									'response' => 'success',
+									'msg' => $this->language->t('Print succeeded!')
 							)
 					);
 	  		}
 
-				if($hash = $this->getHash($source, $type)){
+				if($orientation == "portrait"){
+					shell_exec('lpr -o orientation-requested=4 ' . $source);
 						return new JSONResponse(
 								array(
 										'response' => 'success',
@@ -47,35 +49,9 @@ class PrinterController extends Controller {
 						return new JSONResponse(
 								array(
 										'response' => 'error',
-										'msg' => $this->language->t('File to print not found.')
+										'msg' => $this->language->t('Print failed')
 								)
 						);
 				};
-
-	  }
-
-	  protected function getHash($source, $type) {
-
-	  	if($info = Filesystem::getLocalFile($source)) {
-	  			return hash_file($type, $info);
-	  	}
-
-	  	return false;
-	  }
-
-	  protected function checkAlgorithmType($type) {
-	  	$list_algos = hash_algos();
-	  	return in_array($type, $this->getAllowedAlgorithmTypes()) && in_array($type, $list_algos);
-	  }
-
-	  protected function getAllowedAlgorithmTypes() {
-	  	return array(
-				'md5',
-				'sha1',
-				'sha256',
-				'sha384',
-				'sha512',
-				'crc32'
-			);
-		}
+  }
 }

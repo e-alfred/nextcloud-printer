@@ -76,7 +76,7 @@
       }
 
       var url = OC.generateUrl('/apps/printer/printfile'),
-          data = {source: fileInfo.getFullPath(), type: orientation},
+          data = {source: fileInfo.getFullPath(), orientation: orientation},
           _self = this;
       $.ajax({
         type: 'GET',
@@ -104,10 +104,10 @@
         msg = data.msg;
       }
 
-      msg += '<br><br><a id="reload-checksum" class="icon icon-history" style="display:block" href=""></a>';
+      msg += '<br><br><a id="reload-print" class="icon icon-history" style="display:block" href=""></a>';
 
       this.delegateEvents({
-        'click #reload-checksum': '_onReloadEvent'
+        'click #reload-print': '_onReloadEvent'
       });
 
       this.$el.find('.get-print').html(msg);
@@ -133,7 +133,7 @@
       ev.preventDefault();
       this._renderSelectList(this.$el);
       this.delegateEvents({
-        'change #choose-algorithm': '_onChangeEvent'
+        'change #choose-orientation': '_onChangeEvent'
       });
     }
 
