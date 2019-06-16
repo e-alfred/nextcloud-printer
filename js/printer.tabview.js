@@ -62,7 +62,7 @@
     },
 
     /**
-     * ajax callback for generating md5 hash
+     * ajax callback for printing file
      */
     check: function(fileInfo, orientation) {
       // skip call if fileInfo is null
@@ -139,7 +139,7 @@
 
   });
 
-  OCA.Printer = OCA.Primter || {};
+  OCA.Printer = OCA.Printer || {};
 
   OCA.Printer.PrinterTabView = PrinterTabView;
 

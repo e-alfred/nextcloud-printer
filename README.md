@@ -1,31 +1,30 @@
 Checksum
 ========
 
-**Plugin for [Nextcloud](https://nextcloud.com) and [ownCloud](https://owncloud.org) to create hashes of files.**
+**App for [Nextcloud](https://nextcloud.com) to print files using the CUPS/LPR printing ecosystem.**
 
-![animation](screenshots/checksum.gif)
+![animation](screenshots/printer.gif)
 
 Installation
 ------------
 
 **Nextcloud**
 
-In your Instance, simply navigate to »Apps«, choose the category »Files«, find the Checksum app and enable it.
+You need a working CUPS setup with a compatible printer set up as the default printer and the LPR daemon installed on your server.
 
-**ownCloud**
-- Copy the checksum folder in the app directory of owncloud.
-- If not already done, rename the app-folder to "checksum" - causes overwise an sql error.
-- Enable this app in the admin interface.
+In your Instance, simply navigate to »Apps«, choose the category »Tools«, find the Printer app and enable it.
 
 Usage
 -----
 
-Just open the details view of the file (Sidebar). There should be a new tab called "Checksum". Select a algorithm and it will try to generate a hash. If you want an other algorithm, just click on the reload button. 
+Just open the details view of the file (Sidebar). There should be a new tab called "Printer". Select a Orientation of your print and it will try to ececute the LPR (Line Printing Daemon) on the CLI to send the job to a printer configured in CUPS. Currently, only the printer set as default can be used for printing.
 
-Possible algorithms are md5, sha1, sha256, sha384, sha512 and crc32.
+Possible orientations are "Landscape" and "Portrait". Further options will be added in the future.
 
 Compatibility
 -------------
 
-- I only tested the app for the current version of owncloud (9.x) and Nextcloud 10 and 11.
+- I only tested the app for the current versions of Nextcloud (14 and up).
 - I tried to use the current api as much as possible. It should be safe for future versions.
+- Currently only files supported by CUPS natively are supported for printing. This includes Images, PDFs, text files and probably others. Not all filetypes are supported by CUPS.
+- The app currently misses a lot of features that will be added in future versions of the app. If you want to help out with development, a PR is highly welcome.

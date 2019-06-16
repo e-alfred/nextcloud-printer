@@ -23,12 +23,13 @@ class PrinterController extends Controller {
 		/**
 		 * callback function to get md5 hash of a file
 		 * @NoAdminRequired
-		 * @param (string) $source - filename
+		 * @param (string) $sourcefile - filename
 		 * @param (string) $orientation - Orientation of printed file
 		 */
-	  public function printfile($source, $orientation) {
-	  		if($orientation == "landscape") {
-					shell_exec('lpr ' . $source);
+	  public function printfile($sourcefile, $orientation) {
+	  		if($orientation === "landscape") {
+					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
+					exec('lpr ' . $filefullpath);
 	  			return new JSONResponse(
 							array(
 									'response' => 'success',
@@ -37,8 +38,9 @@ class PrinterController extends Controller {
 					);
 	  		}
 
-				if($orientation == "portrait"){
-					shell_exec('lpr -o orientation-requested=4 ' . $source);
+				if($orientation === "portrait"){
+					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
+					exec('lpr -o orientation-requested=4 ' . $filefullpath);
 						return new JSONResponse(
 								array(
 										'response' => 'success',
