@@ -28,7 +28,7 @@ class PrinterController extends Controller {
 		 */
 	  public function printfile($sourcefile, $orientation) {
 	  		if($orientation === "landscape") {
-					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
+					$filefullpath = Filesystem::getLocalFile($sourcefile);
 					exec('lpr ' . $filefullpath);
 	  			return new JSONResponse(
 							array(
