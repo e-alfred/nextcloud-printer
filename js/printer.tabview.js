@@ -76,7 +76,7 @@
       }
 
       var url = OC.generateUrl('/apps/printer/printfile'),
-          data = {source: fileInfo.getFullPath(), orientation: orientation},
+          data = {sourcefile: fileInfo.getFullPath(), orientation: orientation},
           _self = this;
       $.ajax({
         type: 'GET',

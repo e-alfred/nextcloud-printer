@@ -29,7 +29,7 @@ class PrinterController extends Controller {
 	  public function printfile($sourcefile, $orientation) {
 	  		if($orientation === "landscape") {
 					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
-					exec('lpr ' . $filefullpath);
+					exec('sudo lpr "' . $filefullpath . '"');
 	  			return new JSONResponse(
 							array(
 									'response' => 'success',
@@ -40,7 +40,7 @@ class PrinterController extends Controller {
 
 				if($orientation === "portrait"){
 					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
-					exec('lpr -o orientation-requested=4 ' . $filefullpath);
+					exec('sudo lpr -o orientation-requested=4 "' . $filefullpath . '"');
 						return new JSONResponse(
 								array(
 										'response' => 'success',
