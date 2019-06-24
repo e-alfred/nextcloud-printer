@@ -12,7 +12,9 @@ Installation
 
 You need a working CUPS setup with a compatible printer set up as the default printer and the LPR daemon installed on your server.
 
-In your Instance, simply navigate to »Apps«, choose the category »Tools«, find the Printer app and enable it.
+On Debian, you can install the packages `cups` and `cups-bsd` and configure a default printer in CUPS (please refer to the CUPS documentation on how to do that). You can verify the installation with `lpstat -p` and `lpstat -d` after you configured CUPS correctly.
+
+To install the app itself on your instance, simply navigate to »Apps« in your Nextcloud web interface, choose the category »Tools«, find the Printer app and enable it.
 
 Usage
 -----
