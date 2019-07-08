@@ -19,11 +19,11 @@ To install the app itself on your instance, simply navigate to »Apps« in your 
 Usage
 -----
 
-Just open the details view of the file (Sidebar). There should be a new tab called "Printer". Select a Orientation of your print and it will try to ececute the LPR (Line Printing Daemon) on the CLI to send the job to a printer configured in CUPS. Currently, only the printer set as default can be used for printing.
+Just open the details view of the file (Sidebar). There should be a new tab called "Printer". Select the orientation the file you want to print and it will try to execute the LPR (Line Printing Daemon) command on the CLI to send the job to a printer configured in CUPS. Currently, only the printer set as default can be used for printing.
 
 Possible orientations are "Landscape" and "Portrait". Further options will be added in the future.
 
-Compatibility
+Compatibility and limitations
 -------------
 
 - I only tested the app for the current versions of Nextcloud (14 and up).
