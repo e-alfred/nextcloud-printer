@@ -18,14 +18,14 @@
       <filesystem/>
     </types>
     <documentation>
-        <user>https://github.com/westberliner/owncloud-checksum/blob/master/README.md</user>
-        <admin>https://github.com/westberliner/owncloud-checksum/blob/master/README.md</admin>
+        <user>https://github.com/e-alfred/nextcloud-printer/blob/master/README.md</user>
+        <admin>https://github.com/e-alfred/nextcloud-printer/blob/master/README.md</admin>
     </documentation>
     <category>files</category>
     <category>tools</category>
     <website>https://github.com/e.alfred/nextcloud-printer/</website>
     <bugs>https://github.com/westberliner/nextcloud-printer/issues</bugs>
-    <screenshot>https://raw.githubusercontent.com/e-alfred/nextcloud-printer/master/screenshots/print.gif</screenshot>
+    <screenshot>https://github.com/e-alfred/nextcloud-printer/raw/master/screenshots/printer.gif</screenshot>
     <dependencies>
         <nextcloud min-version="14" max-version="17" />
     </dependencies>
