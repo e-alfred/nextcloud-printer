@@ -23,10 +23,10 @@
     </documentation>
     <category>files</category>
     <category>tools</category>
-    <website>https://github.com/e.alfred/nextcloud-printer/</website>
-    <bugs>https://github.com/westberliner/nextcloud-printer/issues</bugs>
+    <website>https://github.com/e-alfred/nextcloud-printer/</website>
+    <bugs>https://github.com/e-alfred/nextcloud-printer/issues</bugs>
     <screenshot>https://github.com/e-alfred/nextcloud-printer/raw/master/screenshots/printer.gif</screenshot>
     <dependencies>
-        <nextcloud min-version="14" max-version="17" />
+        <nextcloud min-version="14" max-version="18" />
     </dependencies>
 </info>
