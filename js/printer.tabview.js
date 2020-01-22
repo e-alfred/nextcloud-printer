@@ -43,6 +43,12 @@
           + '<option value="">' + t('printer', 'Choose orientation') + '</option>'
           + '<option value="landscape">Landscape</option>'
           + '<option value="portrait">Portrait</option>'
+        + '</select>'
+        + '<input name="set-copies" type="number" value="1">'
+        + '<select id="choose-color">'
+          + '<option value="">' + t('printer', 'Choose Color') + '</option>'
+          + '<option value="color">Color</option>'
+          + '<option value="black">Black</option>'
         + '</select></div>'
       );
     },

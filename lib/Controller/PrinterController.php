@@ -25,8 +25,10 @@ class PrinterController extends Controller {
 		 * @NoAdminRequired
 		 * @param (string) $sourcefile - filename
 		 * @param (string) $orientation - Orientation of printed file
+		 * @param (string) $copies - Orientation of printed file
+		 * @param (string) $color - Orientation of printed file
 		 */
-	  public function printfile($sourcefile, $orientation) {
+	  public function printfile($sourcefile, $orientation, $copies = 1, $color) {
 	  		if($orientation === "landscape") {
 					$filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
 					exec('lpr "' . $filefullpath . '"');
