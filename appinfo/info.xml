@@ -12,22 +12,22 @@
         Select a algorithm and it will try to generate a hash.
         If you want an other algorithm, just click on the reload button.
     </description>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <licence>agpl</licence>
     <author>e-alfred</author>
     <types>
       <filesystem/>
     </types>
     <documentation>
-        <user>https://github.com/westberliner/owncloud-checksum/blob/master/README.md</user>
-        <admin>https://github.com/westberliner/owncloud-checksum/blob/master/README.md</admin>
+        <user>https://github.com/e-alfred/nextcloud-printer/blob/master/README.md</user>
+        <admin>https://github.com/e-alfred/nextcloud-printer/blob/master/README.md</admin>
     </documentation>
     <category>files</category>
     <category>tools</category>
-    <website>https://github.com/e.alfred/nextcloud-printer/</website>
-    <bugs>https://github.com/westberliner/nextcloud-printer/issues</bugs>
+    <website>https://github.com/e-alfred/nextcloud-printer/</website>
+    <bugs>https://github.com/e-alfred/nextcloud-printer/issues</bugs>
     <screenshot>https://raw.githubusercontent.com/e-alfred/nextcloud-printer/master/screenshots/print.gif</screenshot>
     <dependencies>
-        <nextcloud min-version="14" max-version="17" />
+        <nextcloud min-version="16" max-version="18" />
     </dependencies>
 </info>
