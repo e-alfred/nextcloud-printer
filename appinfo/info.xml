@@ -6,8 +6,8 @@
      <summary>Allows to print files directly inside Nextcloud to a printer.</summary>
      <description>
        Please check the Readme on Github on how to set up this app!
-       Allows users to print files using the CUPS/LPR printing ecosystem.
 
+       Allows users to print files using the CUPS/LPR printing ecosystem.
        Just open the details view of the file (Sidebar). There should be a new tab called "Printer".
        Select the orientation of your printed file and it will be sent to your printer.
        If you want to print it again, just click on the reload button.
