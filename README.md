@@ -16,6 +16,45 @@ On Debian, you can install the packages `cups` and `cups-bsd` and configure a de
 
 To install the app itself on your instance, simply navigate to »Apps« in your Nextcloud web interface, choose the category »Tools«, find the Printer app and enable it.
 
+**Docker**
+
+You need a CUPS server with a shared IPP printer running within your local network. To use the plugin within a docker instance the docker image has to be altered to install the packages `cups-client`, `cups-daemon` and `cups-bsd`. The CUPS service has to be started and a default printer setup when the container is starting up. This is achieved by adding a startup script which is executed before the base image of the container is run. The following two examples show you how this can be done for the nextcloud:fpm docker image.
+
+**Example Dockerfile: myNextcloud**
+
+```Dockerfile
+FROM        nextcloud:fpm
+ADD         myNextcloud.sh /
+RUN         apt-get update && apt-get install -y cups-client cups-daemon cups-bsd && chmod +x /myNextcloud.sh
+ENTRYPOINT  ["/myNextcloud.sh"]
+CMD         ["php-fpm"]
+```
+
+**Example startscript: myNextcloud.sh**
+
+```Dockerfile
+#!/usr/bin/env sh
+service cups start
+# Replace the placeholders $ip$ and $printer_name$ accordingly to your setup 
+lpadmin -p HP_M281_docker -E -v ipp://$ip$:631/printers/$printer_name$ -m everywhere
+lpoptions -d HP_M281_docker
+sh /entrypoint.sh "$@"
+```
+
+In case you're using docker compose the following changes have to be made to your docker compose file in order to build the image with the changes made in the Dockerfile myNextcloud. To build the docker containers use `docker-compose build --pull`.
+
+**Example Docker compose:**
+
+```Dockerfile
+...
+  nextcloud:
+#    image: nextcloud:fpm
+    build:
+      context: .
+      dockerfile: myNextcloud
+...
+```
+
 Usage
 -----
 
