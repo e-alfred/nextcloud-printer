@@ -6,42 +6,35 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
 use Symfony\Component\Process\Process;
+use OCA\Printer\Service\Printer;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class PrinterController extends Controller
 {
+    /**
+     * @var OC\L10N\LazyL10N
+     */
     protected $language;
 
-    public function __construct($appName, IRequest $request)
+    /**
+     * @var Printer
+     */
+    protected $printer;
+
+    public function __construct(string $appName, IRequest $request, Printer $printer)
     {
         parent::__construct($appName, $request);
 
         $this->language = \OC::$server->getL10N('printer');
+        $this->printer = $printer;
     }
 
     /**
-     * callback function to get md5 hash of a file.
-     *
      * @NoAdminRequired
-     *
-     * @param (string) $sourcefile  - filename
-     * @param (string) $orientation - Orientation of printed file
      */
-    public function printfile($sourcefile, $orientation)
+    public function printfile(string $sourcefile, string $orientation): JSONResponse
     {
-        $filefullpath = \OC\Files\Filesystem::getLocalFile($sourcefile);
-
-        $options = [
-            'landscape' => [
-                'lpr',
-                $filefullpath,
-            ],
-            'portrait' => [
-                'lpr',
-                '-o',
-                'orientation-requested=4',
-                $filefullpath,
-            ],
-        ];
+        $file = \OC\Files\Filesystem::getLocalFile($sourcefile);
 
         $success = [
             'response' => 'success',
@@ -53,17 +46,16 @@ class PrinterController extends Controller
             'msg' => $this->language->t('Print failed'),
         ];
 
-        if (!isset($options[$orientation])) {
+        if (!$this->printer->isValidOrirentation($orientation)) {
             return new JSONResponse($error);
         }
 
-        $process = new Process($options[$orientation]);
-        $process->run();
+        try {
+            $this->printer->print($file, $orientation);
 
-        if ($process->isSuccessful()) {
             return new JSONResponse($success);
+        } catch (ProcessFailedException $exception) {
+            return new JSONResponse($error);
         }
-
-        return new JSONResponse($error);
     }
 }
