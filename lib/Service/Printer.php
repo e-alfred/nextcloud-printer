@@ -34,7 +34,7 @@ class Printer
     /**
      * Validates an orientation.
      */
-    public function isValidOrirentation(string $orientation): bool
+    public function isValidOrientation(string $orientation): bool
     {
         return in_array($orientation, [
             'landscape',

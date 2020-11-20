@@ -64,7 +64,7 @@ class PrinterController extends Controller
             return new JSONResponse($notAllowed);
         }
 
-        if (!$this->printer->isValidOrirentation($orientation)) {
+        if (!$this->printer->isValidOrientation($orientation)) {
             return new JSONResponse($error);
         }
 
