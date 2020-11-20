@@ -2,11 +2,12 @@
 
 namespace OCA\Printer\Controller;
 
+use OCA\Printer\Config;
+use OCA\Printer\Service\Printer;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
-use Symfony\Component\Process\Process;
-use OCA\Printer\Service\Printer;
+use OCP\IUserSession;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class PrinterController extends Controller
@@ -21,12 +22,18 @@ class PrinterController extends Controller
      */
     protected $printer;
 
-    public function __construct(string $appName, IRequest $request, Printer $printer)
+    /**
+     * @var Config
+     */
+    protected $config;
+
+    public function __construct(string $appName, IRequest $request, Printer $printer, Config $config)
     {
         parent::__construct($appName, $request);
 
         $this->language = \OC::$server->getL10N('printer');
         $this->printer = $printer;
+        $this->config = $config;
     }
 
     /**
@@ -45,6 +52,17 @@ class PrinterController extends Controller
             'response' => 'error',
             'msg' => $this->language->t('Print failed'),
         ];
+
+        $notAllowed = [
+            'response' => 'error',
+            'msg' => $this->language->t('User not allowed'),
+        ];
+
+        $user = \OC::$server[IUserSession::class]->getUser();
+
+        if (!$user || $this->config->isDisabledForUser($user)) {
+            return new JSONResponse($notAllowed);
+        }
 
         if (!$this->printer->isValidOrirentation($orientation)) {
             return new JSONResponse($error);
