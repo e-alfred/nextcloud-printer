@@ -28,7 +28,7 @@ class Section implements IIconSection
 
     public function getIcon(): string
     {
-        return $this->url->imagePath('spreed', 'app-dark.svg');
+        return $this->url->imagePath('printer', 'app-dark.svg');
     }
 
     public function getID(): string
