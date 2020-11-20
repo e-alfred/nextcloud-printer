@@ -32,12 +32,10 @@ class Config
      */
     private $secureRandom;
 
-    public function __construct(IConfig $config, ISecureRandom $secureRandom, IGroupManager $groupManager, ITimeFactory $timeFactory)
+    public function __construct(IConfig $config, IGroupManager $groupManager)
     {
         $this->config = $config;
-        $this->secureRandom = $secureRandom;
         $this->groupManager = $groupManager;
-        $this->timeFactory = $timeFactory;
     }
 
     /**
