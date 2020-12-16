@@ -1,4 +1,4 @@
-Checksum
+Printer
 ========
 
 **App for [Nextcloud](https://nextcloud.com) to print files using the CUPS/LPR printing ecosystem.**

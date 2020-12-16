@@ -28,6 +28,6 @@
     <bugs>https://github.com/e-alfred/nextcloud-printer/issues</bugs>
     <screenshot>https://github.com/e-alfred/nextcloud-printer/raw/master/screenshots/printer.gif</screenshot>
          <dependencies>
-        <nextcloud min-version="16" max-version="19" />
+        <nextcloud min-version="18" max-version="20" />
     </dependencies>
 </info>
