@@ -12,7 +12,7 @@
        Select the orientation of your printed file and it will be sent to your printer.
        If you want to print it again, just click on the reload button.
     </description>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <licence>agpl</licence>
     <author>e-alfred</author>
     <types>
