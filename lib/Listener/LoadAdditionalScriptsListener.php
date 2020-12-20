@@ -39,4 +39,3 @@ class LoadAdditionalScriptsListener implements IEventListener {
         Util::addScript('printer', 'printer.plugin');
     }
 }
-
