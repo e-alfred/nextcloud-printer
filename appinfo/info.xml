@@ -28,7 +28,7 @@
     <bugs>https://github.com/e-alfred/nextcloud-printer/issues</bugs>
     <screenshot>https://github.com/e-alfred/nextcloud-printer/raw/master/screenshots/printer.gif</screenshot>
          <dependencies>
-        <nextcloud min-version="20" max-version="20" />
+        <nextcloud min-version="20" max-version="21" />
     </dependencies>
 	<settings>
 		<admin>OCA\Printer\Settings\Admin\AllowedGroups</admin>
