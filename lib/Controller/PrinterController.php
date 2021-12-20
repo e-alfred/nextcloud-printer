@@ -2,6 +2,7 @@
 
 namespace OCA\Printer\Controller;
 
+use OC_Util;
 use OCA\Printer\Config;
 use OCA\Printer\Service\Printer;
 use OCP\AppFramework\Controller;
@@ -9,6 +10,7 @@ use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
 use OCP\IUserSession;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+
 
 class PrinterController extends Controller
 {
@@ -31,9 +33,12 @@ class PrinterController extends Controller
     {
         parent::__construct($appName, $request);
 
+        OC_Util::setupFS();
+
         $this->language = \OC::$server->getL10N('printer');
         $this->printer = $printer;
         $this->config = $config;
+
     }
 
     /**
